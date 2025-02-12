@@ -8,9 +8,12 @@ list_box = sg.Listbox(values=functions.get_todos(), key='todos',
                       enable_events=True, size=[45,10])
 edit_button= sg.Button("Edit")
 
-# 'layout' command is used to connect the 'label' and 'input_box' to the window
+# List of lists to construct the GUI window layout:
+layout = [[label], [input_box, add_button], [list_box, edit_button]]
+
+# 'layout' command is used to connect the 'label', 'input_box', 'add_button', etc to the GUI window
 window = sg.Window('My To-Do App',
-                   layout=[[label], [input_box, add_button], [list_box, edit_button]],
+                   layout=layout,
                     font=('Helvetica', 20))
 
 # Add button implementation:
@@ -37,8 +40,9 @@ while True:
         case 'todos':
             window['todo'].update(value=values['todos'][0])
         case sg.WIN_CLOSED:
-            break
-
+            break  # 'break' is used to break the (while) loop and proceed to the next block of code
+            # if instead of the 'break' statement, the 'exit()' statement would have been used, this command would
+            # exit the program entirely and no more code blocks would be run.
 window.close()
 
 

@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6b12f1d4-ad11-40fc-8d42-30beddd685a6" name="Changes" comment="Initial commit" />
+    <list default="true" id="6b12f1d4-ad11-40fc-8d42-30beddd685a6" name="Changes" comment="Implement the &quot;Edit&quot; button">
+      <change beforePath="$PROJECT_DIR$/.idea/To-Do App.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/To-Do App.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/GUI.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,18 +25,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "MateusDobele"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;MateusDobele&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/MateusDobele/To-do-App.git",
-    "accountId": "4c4d328e-6cf1-4b39-a006-e8bfc6e54f1a"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/MateusDobele/To-do-App.git&quot;,
+    &quot;accountId&quot;: &quot;4c4d328e-6cf1-4b39-a006-e8bfc6e54f1a&quot;
   }
-}]]></component>
+}</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -54,7 +59,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
 }</component>
   <component name="RunManager">
@@ -110,7 +115,39 @@
       <option name="project" value="LOCAL" />
       <updated>1738508962727</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Create basic GUI without interactions">
+      <option name="closed" value="true" />
+      <created>1739110730232</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1739110730232</updated>
+    </task>
+    <task id="LOCAL-00003" summary="First GUI push">
+      <option name="closed" value="true" />
+      <created>1739110872109</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1739110872109</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Implement the &quot;Add&quot; button">
+      <option name="closed" value="true" />
+      <created>1739150105476</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1739150105476</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Implement the &quot;Edit&quot; button">
+      <option name="closed" value="true" />
+      <created>1739288435476</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1739288435476</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -126,6 +163,10 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial commit" />
+    <MESSAGE value="Create basic GUI without interactions" />
+    <MESSAGE value="First GUI push" />
+    <MESSAGE value="Implement the &quot;Add&quot; button" />
+    <MESSAGE value="Implement the &quot;Edit&quot; button" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implement the &quot;Edit&quot; button" />
   </component>
 </project>
