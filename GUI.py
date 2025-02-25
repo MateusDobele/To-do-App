@@ -2,8 +2,18 @@ import functions
 import FreeSimpleGUI as sg
 import time
 
+# ensure file is a standalone executable by creating dependency file "todos.txt":
+import os
+
+if not os.path.exists("todos.txt"):  # os.path.exists checks if the file / path exists on the device
+    # If the file 'todos.txt' doesn't exist on a device, this command will create it:
+    with open("todos.txt", "w") as file:
+        pass
+
+# set theme:
 sg.theme('DarkTeal6')   # google 'pysimplegui themes' to find all themes (e.g., 'DarkTeal6'))
 
+# create GUI widgets:
 clock = sg.Text('', key='clock')
 label = sg.Text("Type in a to-do")
 input_box = sg.InputText(tooltip="Enter to-do", key="todo")
@@ -28,7 +38,7 @@ window = sg.Window('My To-Do App',
 
 # Add button implementation:
 while True:
-    event, values = window.read(timeout=10)
+    event, values = window.read(timeout=200)
     window["clock"].update(value=time.strftime("%b %d, %Y %H:%M:%S"))
     match event:
         case "Add":
@@ -67,4 +77,5 @@ while True:
             # if instead of the 'break' statement, the 'exit()' statement would have been used, this command would
             # exit the program entirely and no more code blocks would be run.
 window.close()
+
 
