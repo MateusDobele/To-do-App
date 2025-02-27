@@ -1,2 +1,10 @@
-venv
-.idea
+.venv/
+.idea/
+
+# Ignore compiled Python files
+__pycache__/
+*.pyc
+*.pyo
+
+# Ignore system files
+.DS_Store
