@@ -11,16 +11,16 @@ if not os.path.exists("todos.txt"):  # os.path.exists checks if the file / path 
         pass
 
 # set theme:
-sg.theme('DarkTeal6')   # google 'pysimplegui themes' to find all themes (e.g., 'DarkTeal6'))
+sg.theme('DarkTeal6')   # google 'pysimplegui themes' to find all themes (e.g., 'DarkTeal6')
 
 # create GUI widgets:
 clock = sg.Text('', key='clock')
 label = sg.Text("Type in a to-do")
 input_box = sg.InputText(tooltip="Enter to-do", key="todo")
 add_button = sg.Button("Add", size=10)
-list_box = sg.Listbox(values=functions.get_todos(), key='todos',
+list_box = sg.Listbox(values=functions.get_todos() or [], key='todos',
                       enable_events=True, size=[45, 10])
-edit_button = sg.Button("Edit")
+edit_button = sg.Button("Replace")
 complete_button = sg.Button("Complete")
 exit_button = sg.Button("Exit")
 
@@ -28,54 +28,78 @@ exit_button = sg.Button("Exit")
 layout = [[clock],
           [label],
           [input_box, add_button],
-          [list_box, edit_button, complete_button],
+          [list_box, sg.Column([[edit_button], [complete_button]])],  # Column stacks buttons vertically
           [exit_button]]
 
-# 'layout' command is used to connect the 'label', 'input_box', etc. to the GUI window
+# 'layout' command is used to connect the GUI widgets (e.g., 'label', 'input_box', etc.)
+# to the GUI window (sg.Window)
 window = sg.Window('My To-Do App',
                    layout=layout,
                     font=('Helvetica', 20))
 
-# Add button implementation:
+# Button implementations in window:
+# Event loop
 while True:
-    event, values = window.read(timeout=200)
-    window["clock"].update(value=time.strftime("%b %d, %Y %H:%M:%S"))
-    match event:
-        case "Add":
-            todos = functions.get_todos()
-            new_todo = values['todo'] + "\n"
-            todos.append(new_todo)
-            functions.write_todos(todos)
-        case "Edit":
-            try:
-                todo_to_edit = values['todos'][0]
-                new_todo = values['todo']
+    event, values = window.read(timeout=10)
 
+    # Handle Window Closed event first
+    if event in (sg.WIN_CLOSED, "Exit"):
+        break
+
+    # Update the clock
+    window["clock"].update(value=time.strftime("%b %d, %Y %H:%M:%S"))
+
+    match event:
+        # Add button:
+        case "Add":
+            new_todo = values["todo"].strip()
+            if not new_todo:
+                sg.popup("Please enter a valid to-do.", font=("Helvetica", 20))
+            else:
                 todos = functions.get_todos()
-                index = todos.index(todo_to_edit)
-                todos[index] = new_todo
+                todos.append(new_todo + "\n")
                 functions.write_todos(todos)
-                window['todos'].update(values=todos)
-            except IndexError:
-                sg.popup("Please select an item first.", font=('Helvetica', 20))
+                window["todos"].update(values=todos)
+                window["todo"].update(value="")  # Clear input field
+
+        # Edit button
+        case "Replace":
+            if values["todos"]:  # Ensure selection
+                todo_to_edit = values["todos"][0]
+                new_todo = values["todo"].strip()
+
+                if not new_todo:
+                    sg.popup("Please enter a valid to-do before editing.", font=("Helvetica", 20))
+                else:
+                    todos = functions.get_todos()
+                    index = todos.index(todo_to_edit)
+                    todos[index] = new_todo + "\n"
+                    functions.write_todos(todos)
+                    window["todos"].update(values=todos)
+                    window["todo"].update(value="")  # Clear input field
+            else:
+                sg.popup("Please select an item first.", font=("Helvetica", 20))
+
+        # Complete button
         case "Complete":
-            try:
-                todo_to_complete = values['todos'][0]
-                todos = functions.get_todos()
-                todos.remove(todo_to_complete)
-                functions.write_todos(todos)
-                window['todos'].update(values=todos)
-                window['todo'].update(value='')
-            except IndexError:
-                sg.popup("Please select an item first.", font=('Helvetica', 20))
-        case "Exit":
-            break
-        case 'todos':
-            window['todo'].update(value=values['todos'][0])
-        case sg.WIN_CLOSED:
-            break  # 'break' is used to break the (while) loop and proceed to the next block of code
-            # if instead of the 'break' statement, the 'exit()' statement would have been used, this command would
-            # exit the program entirely and no more code blocks would be run.
+            if values["todos"]:  # Ensure an item is selected before attempting removal
+                todo_to_complete = values["todos"][0].strip()
+                todos = [t.strip() for t in functions.get_todos()]  # Normalize all stored todos
+
+                if todo_to_complete in todos:
+                    todos.remove(todo_to_complete)
+                    functions.write_todos([t + "\n" for t in todos])  # Re-add newlines before writing
+                    window["todos"].update(values=todos)
+                    window["todo"].update(value="")  # Clear input field
+                else:
+                    sg.popup("Selected to-do not found.", font=("Helvetica", 20))
+            else:
+                sg.popup("Please select an item first.", font=("Helvetica", 20))
+
+        case "todos":
+            if values["todos"]:  # Ensure an item is selected before updating
+                window["todo"].update(value=values["todos"][0])
+
 window.close()
 
 
