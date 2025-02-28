@@ -45,9 +45,9 @@ jsonpointer==3.0.0
 jsonschema==4.6.0
 jsonschema-specifications==2024.10.1
 jupyter==1.1.1
-jupyter-client==7.3.4
-jupyter-console==6.6.3
-jupyter-core==4.10.0
+jupyter-client
+jupyter-console
+jupyter-core
 jupyter-events==0.12.0
 jupyter-lsp==2.2.5
 jupyter_server==2.15.0
@@ -76,7 +76,7 @@ pickleshare==0.7.5
 pillow==11.1.0
 platformdirs==4.3.6
 prometheus-client==0.14.1
-prompt-toolkit==3.0.29
+prompt-toolkit
 protobuf==3.20.1
 psutil==5.9.1
 ptyprocess==0.7.0
